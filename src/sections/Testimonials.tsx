@@ -7,7 +7,8 @@ import avatar6 from "@/assets/avatar-6.png";
 import avatar7 from "@/assets/avatar-7.png";
 import avatar8 from "@/assets/avatar-8.png";
 import avatar9 from "@/assets/avatar-9.png";
-
+import Image from "next/image";
+import { twMerge } from "tailwind-merge";
 const testimonials = [
   {
     text: "As a seasoned designer always on the lookout for innovative tools, Framer.com instantly grabbed my attention.",
@@ -64,7 +65,61 @@ const testimonials = [
     username: "@casey09",
   },
 ];
+const firstSlice = testimonials.slice(0, 3);
+const SecondSlice = testimonials.slice(3, 6);
+const ThirdSlice = testimonials.slice(6, 9);
+
+const TestCol = (props: {
+  className?: string;
+  testimonials: typeof testimonials;
+}) => (
+  <div
+    className={twMerge(
+      "flex flex-col mt-10 justify-center items-center [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_70%,transparent)]",
+      props.className
+    )}
+  >
+    {props.testimonials.map((item, index) => (
+      <div key={index} className="card flex flex-col justify-center gap-6">
+        <div>
+          <p>{item.text}</p>
+        </div>
+        <div className="flex gap-2">
+          <Image width={40} height={40} src={item.imageSrc} alt={item.name} />
+          <div className="flex flex-col">
+            <span className="leading-[20px] tracking-tight font-medium">
+              {item.name}
+            </span>
+            <span className="tracking-tight">{item.username}</span>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+);
 
 export const Testimonials = () => {
-  return null;
+  return (
+    <div>
+      <div className="section py-24 bg-white">
+        <div className="container">
+          <div className="max-w-[540px] mx-auto">
+            <div className="flex justify-center items-center">
+              <div className="small-text-border">Testimonials</div>
+            </div>
+            <h2 className="side-title">What our users say</h2>
+            <p className="side-para">
+              From intuitive design to powerful features, our app has become an
+              essential tool for users around the world.
+            </p>
+          </div>
+          <div className="flex gap-6 justify-center">
+            <TestCol testimonials={firstSlice} />
+            <TestCol testimonials={SecondSlice} className="hidden md:flex" />
+            <TestCol testimonials={ThirdSlice} className="hidden lg:flex" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };

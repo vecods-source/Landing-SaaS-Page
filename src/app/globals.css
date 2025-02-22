@@ -27,4 +27,7 @@
   .side-para {
     @apply text-[22px] leading-[30px] text-[#010D3E] tracking-tight mt-5 text-center;
   }
+  .card {
+    @apply max-w-[320px] border-[1px] mt-10 border-[#F1F1F1] rounded-3xl p-10 shadow-[0_7px_14px_rgba(0,0,0,0.2)];
+  }
 }

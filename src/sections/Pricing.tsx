@@ -63,13 +63,11 @@ export const Pricing = () => {
               exclusive features.
             </p>
           </div>
-          <div className="price-cards flex flex-col items-center lg:flex-row lg:gap-8 lg:items-end">
+          <div className="flex flex-col items-center lg:flex-row lg:gap-8 lg:items-end">
             {pricingTiers.map((tier, index) => (
               <div
                 key={index}
-                className={`max-w-[320px] border-[1px] mt-10 border-[#F1F1F1] rounded-3xl p-10 shadow-[0_7px_14px_rgba(0,0,0,0.2)] ${
-                  tier.popular ? "text-white bg-black" : ""
-                }`}
+                className={`card ${tier.popular ? "text-white bg-black" : ""}`}
               >
                 <div className="flex justify-between items-center">
                   <span
