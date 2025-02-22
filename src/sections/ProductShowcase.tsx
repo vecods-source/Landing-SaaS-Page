@@ -1,11 +1,27 @@
+"use client";
 import Image from "next/image";
 import Productimg from "@/assets/product-image.png";
 import Tubeimg from "@/assets/tube.png";
 import Diamondimg from "@/assets/pyramid.png";
+import { useRef } from "react";
+import { motion, useTransform, useScroll } from "framer-motion";
 export const ProductShowcase = () => {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const transformerYProgress = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [-150, 150]
+  );
   return (
     <div>
-      <div className="section py-24 overflow-x-clip bg-gradient-to-b from-[#FFFFFF] to-[#D2DCFF] ">
+      <div
+        ref={sectionRef}
+        className="section py-24 overflow-x-clip bg-gradient-to-b from-[#FFFFFF] to-[#D2DCFF] "
+      >
         <div className="container">
           <div className=" max-w-[540px] mx-auto">
             <div className="flex justify-center">
@@ -21,18 +37,21 @@ export const ProductShowcase = () => {
           </div>
           <div className="relative">
             <Image alt={"product image"} src={Productimg} className="mt-10" />
-            <Image
+            <motion.img
               alt={"Cylinder image"}
-              src={Tubeimg}
+              src={Tubeimg.src}
               height={248}
+              width={248}
               className="hidden md:block absolute -left-36 bottom-24"
+              style={{ translateY: transformerYProgress }}
             />
-            <Image
+            <motion.img
               alt={"Diamond image"}
-              src={Diamondimg}
+              src={Diamondimg.src}
               height={262}
               width={262}
               className="hidden md:block absolute -right-36 -top-32 "
+              style={{ translateY: transformerYProgress }}
             />
           </div>
         </div>
