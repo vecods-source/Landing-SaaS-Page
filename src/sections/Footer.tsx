@@ -28,7 +28,7 @@ export const Footer = () => {
               <Linkedin width={30} />
               <Pint width={30} />
             </div>
-            <p className="opacity-50">
+            <p className="opacity-50 text-center">
               © 2024 Designed by Eng.Saad, Inc. All rights reserved.
             </p>
           </div>
