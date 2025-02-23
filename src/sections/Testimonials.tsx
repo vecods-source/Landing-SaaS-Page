@@ -90,7 +90,7 @@ const TestCol = (props: {
       {[...props.testimonials, ...props.testimonials].map((item, index) => (
         <div key={index} className="card">
           <div>
-            <p>{item.text}</p>
+            <p className="mb-5">{item.text}</p>
           </div>
           <div className="flex gap-2">
             <Image width={40} height={40} src={item.imageSrc} alt={item.name} />
