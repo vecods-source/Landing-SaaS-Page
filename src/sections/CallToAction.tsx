@@ -1,11 +1,20 @@
+"use client";
 import ArrowIcon from "@/assets/arrow-right.svg";
 import Starimg from "@/assets/star.png";
 import Springimg from "@/assets/spring.png";
 import Image from "next/image";
+import { useRef } from "react";
+import { motion, useTransform, useScroll } from "framer-motion";
 export const CallToAction = () => {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const transfomerdY = useTransform(scrollYProgress, [0, 1], [-150, 150]);
   return (
     <div>
-      <div className="section py-24 overflow-x-clip">
+      <div ref={sectionRef} className="section py-24 overflow-x-clip">
         <div className="container ">
           <div className="max-w-[540px] mx-auto  relative">
             <h2 className="side-title">Sign up for free today</h2>
@@ -19,17 +28,20 @@ export const CallToAction = () => {
                 <span>Learn more</span> <ArrowIcon className="w-5 h-5" />
               </button>
             </div>
-            <Image
-              src={Starimg}
+            <motion.img
+              src={Starimg.src}
               alt="star img"
               width={360}
+              height={360}
               className="hidden absolute md:block -left-[350px] -top-[137px]"
+              style={{ translateY: transfomerdY }}
             />
-            <Image
-              src={Springimg}
+            <motion.img
+              src={Springimg.src}
               width={363}
               alt="spring img"
               className="hidden absolute md:block -right-[331px] -top-[19px]"
+              style={{ translateY: transfomerdY }}
             />
           </div>
         </div>

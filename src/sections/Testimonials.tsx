@@ -1,3 +1,4 @@
+"use client";
 import avatar1 from "@/assets/avatar-1.png";
 import avatar2 from "@/assets/avatar-2.png";
 import avatar3 from "@/assets/avatar-3.png";
@@ -9,6 +10,8 @@ import avatar8 from "@/assets/avatar-8.png";
 import avatar9 from "@/assets/avatar-9.png";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
+import { motion } from "framer-motion";
+
 const testimonials = [
   {
     text: "As a seasoned designer always on the lookout for innovative tools, Framer.com instantly grabbed my attention.",
@@ -73,28 +76,34 @@ const TestCol = (props: {
   className?: string;
   testimonials: typeof testimonials;
 }) => (
-  <div
-    className={twMerge(
-      "flex flex-col mt-10 justify-center items-center [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_70%,transparent)]",
-      props.className
-    )}
-  >
-    {props.testimonials.map((item, index) => (
-      <div key={index} className="card flex flex-col justify-center gap-6">
-        <div>
-          <p>{item.text}</p>
-        </div>
-        <div className="flex gap-2">
-          <Image width={40} height={40} src={item.imageSrc} alt={item.name} />
-          <div className="flex flex-col">
-            <span className="leading-[20px] tracking-tight font-medium">
-              {item.name}
-            </span>
-            <span className="tracking-tight">{item.username}</span>
+  <div className={`${props.className} `}>
+    <motion.div
+      className="pb-10"
+      animate={{ y: ["0%", "-50%"] }}
+      transition={{
+        duration: 15,
+        ease: "linear",
+        repeat: Infinity,
+        repeatType: "loop",
+      }}
+    >
+      {[...props.testimonials, ...props.testimonials].map((item, index) => (
+        <div key={index} className="card">
+          <div>
+            <p>{item.text}</p>
+          </div>
+          <div className="flex gap-2">
+            <Image width={40} height={40} src={item.imageSrc} alt={item.name} />
+            <div className="flex flex-col">
+              <span className="leading-[20px] tracking-tight font-medium">
+                {item.name}
+              </span>
+              <span className="tracking-tight">{item.username}</span>
+            </div>
           </div>
         </div>
-      </div>
-    ))}
+      ))}
+    </motion.div>
   </div>
 );
 
@@ -113,10 +122,10 @@ export const Testimonials = () => {
               essential tool for users around the world.
             </p>
           </div>
-          <div className="flex gap-6 justify-center">
+          <div className="max-h-[796px]  flex gap-6 mt-10 justify-center [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_70%,transparent)]">
             <TestCol testimonials={firstSlice} />
-            <TestCol testimonials={SecondSlice} className="hidden md:flex" />
-            <TestCol testimonials={ThirdSlice} className="hidden lg:flex" />
+            <TestCol testimonials={SecondSlice} className="hidden md:block" />
+            <TestCol testimonials={ThirdSlice} className="hidden lg:block" />
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ export const LogoTicker = () => {
             className="flex gap-14 w-max pr-14"
             animate={{ x: ["0%", "-50%"] }}
             transition={{
-              duration: 5,
+              duration: 15,
               ease: "linear",
               repeat: Infinity,
               repeatType: "loop",

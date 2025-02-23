@@ -1,4 +1,6 @@
+"use client";
 import Checkimg from "@/assets/check.svg";
+import { motion } from "framer-motion";
 const pricingTiers = [
   {
     title: "Free",
@@ -77,11 +79,18 @@ export const Pricing = () => {
                   </span>
                   {tier.popular ? (
                     <div className="p-2 border border-white/20 rounded-3xl">
-                      <span
-                        className={`text-sm px-4 bg-[linear-gradient(to_right,#DD7DFF,#E1CD86,#8BCB92,#71C2EF,#3BFFFF,#DD7DFF)] bg-clip-text text-transparent font-medium`}
+                      <motion.span
+                        className={`text-sm px-4 bg-[linear-gradient(to_right,#DD7DFF,#E1CD86,#8BCB92,#71C2EF,#3BFFFF,#DD7DFF)] [background-size:200%] bg-clip-text text-transparent font-medium`}
+                        animate={{ backgroundPositionX: "-100%" }}
+                        transition={{
+                          duration: 1,
+                          ease: "linear",
+                          repeatType: "loop",
+                          repeat: Infinity,
+                        }}
                       >
                         Most Popular
-                      </span>
+                      </motion.span>
                     </div>
                   ) : (
                     ""

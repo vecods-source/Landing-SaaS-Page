@@ -1,10 +1,11 @@
+"use client";
 import Logo from "@/assets/logosaas.png";
 import Yt from "@/assets/social-youtube.svg";
 import Insta from "@/assets/social-insta.svg";
 import Linkedin from "@/assets/social-linkedin.svg";
 import Pint from "@/assets/social-pin.svg";
 import X from "@/assets/social-x.svg";
-
+import { motion } from "framer-motion";
 import Image from "next/image";
 export const Footer = () => {
   return (
@@ -29,7 +30,20 @@ export const Footer = () => {
               <Pint width={30} />
             </div>
             <p className="opacity-50 text-center">
-              © 2024 Designed by Eng.Saad, Inc. All rights reserved.
+              © 2024 Designed by{" "}
+              <motion.span
+                animate={{ backgroundPositionX: "-100%" }}
+                transition={{
+                  duration: 1,
+                  ease: "linear",
+                  repeatType: "loop",
+                  repeat: Infinity,
+                }}
+                className="bg-[linear-gradient(to_right,#DD7DFF,#E1CD86,#8BCB92,#71C2EF,#3BFFFF,#DD7DFF)] [background-size:200%] bg-clip-text text-transparent"
+              >
+                Mohamed Saad
+              </motion.span>
+              , Inc. All rights reserved.
             </p>
           </div>
         </div>
